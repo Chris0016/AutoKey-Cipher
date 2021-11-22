@@ -30,17 +30,12 @@ public class AutoKey{
 		String runningKey = key +  plaintext;
 		runningKey = runningKey.replace(runningKey.substring(pTextLength), "");
 
-
 		int offset, pos;
-		String curr;
-		int x, y;
 
 		for(int i = 0; i < pTextLength; i++){
 			offset = plaintext.charAt(i) - 65;
 
 			pos =  (ALPHABET.indexOf(runningKey.charAt(i)) + offset) % 25;
-
-			//pos = (pos < 0)? (27 + pos) % 26 : (pos + 1) % 26;
 
 			encryptedText += ALPHABET.charAt(pos);
 
