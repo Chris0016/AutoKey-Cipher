@@ -28,7 +28,7 @@ public class AutoKey{
 	public void encrypt(){
 
 		String runningKey = key +  plaintext;
-		runningKey = runningKey.replace(runningKey.substring(pTextLength), "");
+		runningKey = runningKey.substring(0, pTextLength);
 
 		int offset, pos;
 
