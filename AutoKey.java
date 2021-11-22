@@ -1,0 +1,81 @@
+/**
+*@author Christopher
+*@version 1.0.0	
+*/
+
+
+public class AutoKey{
+	private String plaintext;
+	private String key;
+	private String encryptedText;
+	final String ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+	private int kLength;
+	private int pTextLength;
+
+	public AutoKey(String plaintext, String key){
+
+		this.plaintext = plaintext.toUpperCase().trim();
+		this.key = key.toUpperCase().trim();
+		this.encryptedText = "";
+
+		this.pTextLength = plaintext.length();
+		this.kLength = key.length();
+	
+	}
+
+
+	public void encrypt(){
+
+		String runningKey = key +  plaintext;
+		runningKey = runningKey.replace(runningKey.substring(pTextLength), "");
+
+
+		int offset, pos;
+		String curr;
+		int x, y;
+
+		for(int i = 0; i < pTextLength; i++){
+			offset = plaintext.charAt(i) - 65;
+
+			pos =  (ALPHABET.indexOf(runningKey.charAt(i)) + offset) % 25;
+
+			//pos = (pos < 0)? (27 + pos) % 26 : (pos + 1) % 26;
+
+			encryptedText += ALPHABET.charAt(pos);
+
+		}	
+
+
+	}
+
+
+	//--------------Getters and Setters------------
+
+	public String getPlaintext(){
+		return this.plaintext;
+	}
+
+	public String getKey(){
+		return  this.key;
+	}
+
+	public String getEncryptedText(){
+		return this.encryptedText;
+	}
+
+	public void setPlaintext(String plaintext){
+		this.plaintext = plaintext.toUpperCase().trim();
+		this.pTextLength = plaintext.length();
+
+		this.encryptedText = "";
+	}
+
+	public void setKey(String key){
+		this.key = key.toUpperCase().trim();
+	}
+
+
+
+
+}
